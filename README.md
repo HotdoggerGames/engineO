@@ -1,2 +1,2 @@
 # engineO
-A open source SDL game engine
+A open source SDL c++ game engine
