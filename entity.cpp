@@ -3,9 +3,18 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
+#include <string.h>
 
 entity::entity(Vector2 p_pos, SDL_Texture* p_tex)
 	:tex(p_tex), pos(p_pos)
+{
+	curFrame.x = 0;
+	curFrame.y = 0;
+	curFrame.w = 16;
+	curFrame.h = 16;
+}
+entity::entity(Vector2 p_pos, SDL_Texture* p_tex, std::string p_type)
+	:tex(p_tex), pos(p_pos), type(p_type)
 {
 	curFrame.x = 0;
 	curFrame.y = 0;

@@ -25,8 +25,8 @@ int main(int argc, char* args[])
 	//entity ghost(100,84,GhostTex);
 	//entity potate(100,100,Tex);
 	//entity entities[2] = {entity(100,100,Tex), entity(100,84,GhostTex) };
-	std::vector<entity> entities = { entity(Vector2(0,0),Tex), entity(Vector2(100,100),Tex), entity(Vector2(100,160),Tex) , entity(Vector2(100,440),Tex) };
-	Player ghost(Vector2(100, 100), GhostTex_0, 0, 10);
+	std::vector<entity> entities = { entity(Vector2(0,0),Tex), entity(Vector2(100,100),Tex,"Solid"), entity(Vector2(100,160),Tex) , entity(Vector2(100,440),Tex)};
+	Player ghost(Vector2(200, 100), GhostTex_0, 0, 10);
 	bool Gaming = true;
 
 	SDL_Event event;
@@ -37,9 +37,24 @@ int main(int argc, char* args[])
 	float xIn = 1.0f;
 	float yIn = 1.0f;
 	float speed = 2.5f;
+	bool colliding = false;
+	entity ecol(Vector2(NULL, NULL), NULL, "None");
 
 	while (Gaming)
 	{	
+		window.clear();
+		colliding = false;
+
+		for (entity& e : entities) 
+		{
+			if (e.getX() + (48) >= ghost.getX() && e.getX() + (48) <= (ghost.getX() + (ghost.getCurFrame().w * 6)) && e.getY() + (48) >= ghost.getY() && e.getY() + (48) <= (ghost.getY() + (ghost.getCurFrame().h * 6)) && e.type == "Solid")
+			{
+				colliding = true;
+				ecol = e;
+			}
+			window.render(e);
+		}
+
 		ghost.update(GhostTex_1, GhostTex_0);
 		float newTime = utils::hireTimeInSecondes();
 		float frameTime = newTime - currentTime;
@@ -78,7 +93,7 @@ int main(int argc, char* args[])
 					{
 						ghost.setY(ghost.getY() + speed * yIn);
 					};*/
-					ghost.move(xIn, yIn, speed);
+					ghost.move(xIn, yIn, speed, colliding, ecol);
 				};
 				
 			};
@@ -87,18 +102,12 @@ int main(int argc, char* args[])
 
 		const float alpha = accumulator / timeStep;
 		
-		window.clear();
 		//window.render(potate);
-		for (entity& e : entities) 
-		{
-			if (e.getX() + (48) >= ghost.getX() && e.getX() + (48) <= (ghost.getX() + (ghost.getCurFrame().w * 6)) && e.getY() + (48) >= ghost.getY() && e.getY() + (48) <= (ghost.getY() + (ghost.getCurFrame().h * 6)))
-			{
-				std::cout << "colliding" << utils::hireTimeInSecondes() << std::endl;
-			}
-			window.render(e);
-		}
 		window.render(ghost.ent);
-
+		{
+			ecol = entity(Vector2(-10000, -10000), NULL, "None");
+		}
+		std::cout << colliding << ", " << utils::hireTimeInSecondes() << std::endl;
 		window.display();
 	};
 

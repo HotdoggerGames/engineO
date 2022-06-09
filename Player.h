@@ -17,6 +17,7 @@ class Player
 		SDL_Rect getCurFrame();
 		bool update(SDL_Texture* p_frame_0, SDL_Texture* p_frame_1);
 		void move(float xIn, float yIn, float speed);
+		void move(float xIn, float yIn, float speed, bool colliding, entity entity);
 		entity ent;
 	private:
 		Vector2 pos;

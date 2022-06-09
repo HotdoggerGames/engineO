@@ -8,7 +8,7 @@
 #include <iostream>
 
 Player::Player(Vector2 p_pos, SDL_Texture* p_tex)
-	:tex(p_tex), pos(p_pos), frame(0.0f), ent(entity(Vector2(NULL,NULL),NULL))
+	:tex(p_tex), pos(p_pos), frame(0.0f), ent(entity(Vector2(NULL,NULL),NULL,"None"))
 {
 	curFrame.x = 8;
 	curFrame.y = 8;
@@ -16,7 +16,7 @@ Player::Player(Vector2 p_pos, SDL_Texture* p_tex)
 	curFrame.h = 16;
 }
 Player::Player(Vector2 p_pos, SDL_Texture* p_tex, float p_min, float p_max)
-	:tex(p_tex), pos(p_pos), frame(0.0f), min(p_min), max(p_max), ent(entity(Vector2(NULL,NULL),NULL))
+	:tex(p_tex), pos(p_pos), frame(0.0f), min(p_min), max(p_max), ent(entity(Vector2(NULL,NULL),NULL, "None"))
 {
 	curFrame.x = 8;
 	curFrame.y = 8;
@@ -96,6 +96,25 @@ void Player::move(float xIn, float yIn, float speed)
 		setY(getY() + speed * yIn);
 	};
 	if (yIn == -1.0f)
+	{
+		setY(getY() + speed * yIn);
+	};
+}
+void Player::move(float xIn, float yIn, float speed, bool colliding, entity entity)
+{
+	if (xIn == 1.0f && colliding == false && entity.getX() < getX() || xIn == 1.0f && colliding == true && entity.getX() > getX() + (48))
+	{
+		setX(getX() + speed * xIn);
+	};
+	if (xIn == -1.0f && colliding == false && entity.getX() + (48) < getX() || xIn == -1.0f && colliding == true && entity.getX() > getX())
+	{
+		setX(getX() + speed * xIn);
+	};
+	if (yIn == 1.0f && colliding == false && entity.getY() < getY() || yIn == 1.0f && colliding == true && entity.getY() + (48) > getY())
+	{
+		setY(getY() + speed * yIn);
+	};
+	if (yIn == -1.0f && colliding == false && entity.getY() + (48) < getY() || yIn == -1.0f && colliding == true && entity.getY() > getY())
 	{
 		setY(getY() + speed * yIn);
 	};
