@@ -5,24 +5,32 @@ float Input::getVertical(SDL_Event event, float p_y)
 	if (event.key.keysym.sym == SDLK_s || event.key.keysym.sym == SDLK_DOWN)
 	{
 		p_y = 1.0f;
-	};
+	}
 	if (event.key.keysym.sym == SDLK_w || event.key.keysym.sym == SDLK_UP)
 	{
 		p_y = -1.0f;
+	}
+	if (!event.key.keysym.sym == SDLK_s && !event.key.keysym.sym == SDLK_w || !event.key.keysym.sym == SDLK_UP && !event.key.keysym.sym == SDLK_DOWN)
+	{
+		p_y = 0;
 	};
 
 	return p_y;
 };
 float Input::getHorizontal(SDL_Event event, float p_x)
 {
-		if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
-		{
-			p_x = 1.0f;
-		};
-		if (event.key.keysym.sym == SDLK_a || event.key.keysym.sym == SDLK_LEFT)
-		{
-			p_x = -1.0f;
-		};
+	if (event.key.keysym.sym == SDLK_d || event.key.keysym.sym == SDLK_RIGHT)
+	{
+		p_x = 1.0f;
+	}
+	if (event.key.keysym.sym == SDLK_a || event.key.keysym.sym == SDLK_LEFT)
+	{
+		p_x = -1.0f;
+	}
+	if (!event.key.keysym.sym == SDLK_a && !event.key.keysym.sym == SDLK_d || !event.key.keysym.sym == SDLK_RIGHT && !event.key.keysym.sym == SDLK_LEFT)
+	{
+		p_x = 0;
+	};
 
 	return p_x;
 };

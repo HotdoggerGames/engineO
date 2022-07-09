@@ -7,6 +7,8 @@
     <ClCompile Include="Math.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Physics_Force.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenWin.h" />
@@ -15,5 +17,17 @@
     <ClInclude Include="utils.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Audio.h" />
+    <ClInclude Include="Physics_Force.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="resources\reflect potate.png" />
+    <Image Include="resources\ghost-0.png" />
+    <Image Include="resources\ghost-1.png" />
+    <Image Include="resources\magnet_flip.png" />
+    <Image Include="resources\ghost.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="resources\o.wav" />
   </ItemGroup>
 </Project>

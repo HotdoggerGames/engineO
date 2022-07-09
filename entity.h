@@ -1,7 +1,7 @@
 #pragma once
 #include <SDL.h>
 #include <SDL_image.h>
-#include <string.h>
+#include <string>
 
 #include "Math.h"
 
@@ -18,6 +18,7 @@ class entity
 		SDL_Texture* getTex();
 		void setTex(SDL_Texture* p_tex);
 		SDL_Rect getCurFrame();
+		void setCurFrame(SDL_Rect p_rect);
 		std::string type;
 	private:
 		Vector2 pos;

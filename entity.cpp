@@ -3,7 +3,7 @@
 
 #include <SDL.h>
 #include <SDL_image.h>
-#include <string.h>
+#include <string>
 
 entity::entity(Vector2 p_pos, SDL_Texture* p_tex)
 	:tex(p_tex), pos(p_pos)
@@ -52,4 +52,8 @@ void entity::setTex(SDL_Texture* p_tex)
 SDL_Rect entity::getCurFrame()
 {
 	return curFrame;
+}
+void entity::setCurFrame(SDL_Rect p_rect)
+{
+	curFrame = p_rect;
 }

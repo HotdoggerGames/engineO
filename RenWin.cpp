@@ -59,7 +59,22 @@ void RenWin::render(entity& p_entity)
 	dst.w = p_entity.getCurFrame().w * 4;
 	dst.h = p_entity.getCurFrame().h * 4;
 
-	SDL_RenderCopy(renderer, p_entity.getTex(), NULL, &dst);
+	SDL_RenderCopy(renderer, p_entity.getTex(), &srcs, &dst);
+}
+void RenWin::render(entity& p_entity, float p_w, float p_h)
+{
+	SDL_Rect srcs;
+	srcs.x = p_entity.getCurFrame().x;
+	srcs.y = p_entity.getCurFrame().y;
+	srcs.w = p_w;
+	srcs.h = p_h;
+	SDL_Rect dst;
+	dst.x = p_entity.getX();
+	dst.y = p_entity.getY();
+	dst.w = p_entity.getCurFrame().w * 4;
+	dst.h = p_entity.getCurFrame().h * 4;
+
+	SDL_RenderCopy(renderer, p_entity.getTex(), &srcs, &dst);
 }
 void RenWin::display()
 {
