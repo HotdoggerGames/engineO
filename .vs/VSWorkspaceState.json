@@ -1,7 +1,8 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SDL2-2.0.22\\lib"
   ],
-  "SelectedNode": "\\entity.h",
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\entity.cpp",
+  "PreviewInSolutionExplorer": true
 }
