@@ -9,6 +9,7 @@
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Audio.cpp" />
     <ClCompile Include="Physics_Force.cpp" />
+    <ClCompile Include="SaveManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="RenWin.h" />
@@ -19,6 +20,8 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Audio.h" />
     <ClInclude Include="Physics_Force.h" />
+    <ClInclude Include="SaveManager.h" />
+    <ClInclude Include="CommonHeaders.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="resources\reflect potate.png" />

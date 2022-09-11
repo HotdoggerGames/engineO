@@ -1,6 +1,5 @@
 #include "Player.h"
 #include "Math.h"
-#include "entity.h"
 #include "RenWin.h"
 
 #include <SDL.h>
@@ -9,7 +8,7 @@
 #include <vector>
 
 Player::Player(Vector2 p_pos, SDL_Texture* p_tex, int p_max)
-	:tex(p_tex), pos(p_pos), frame(0.0f), ent(entity(Vector2(NULL,NULL),NULL,"None")), max(p_max)
+	:tex(p_tex), pos(p_pos), frame(0.0f), max(p_max)
 {
 	curFrame.x = 8;
 	curFrame.y = 8;
@@ -57,11 +56,39 @@ SDL_Rect Player::getCurFrame()
 	return curFrame;
 }
 
-bool Player::update()
+void Player::setCurFrame(SDL_Rect p_frame)
 {
+	curFrame = p_frame;
+}
+
+bool Player::update(entity e)
+{
+	/*
 	ent.setX(pos.x);
 	ent.setY(pos.y);
-	ent.setTex(tex);
+	ent.setTex(tex);*/
+	if (e.getX() + (48) >= getX() && e.getX() + (48) <= (getX() + (getCurFrame().w * 6)) && e.getY() + (48) >= getY() && e.getY() + (48) <= (getY() + (getCurFrame().h * 6)) && e.type == "Solid")
+	{
+		if (e.getX() < getX())
+		{
+			setX(getX() + 8);
+		};
+		if (e.getX() + (48) > getX())
+		{
+			setX(getX() - 8);
+		};
+		if (e.getY() < getY())
+		{
+			setY(getY() + 16);
+			vY -= 16;
+		};
+		if (e.getY() + (48) > getY())
+		{
+			setY(getY() - 16);
+			vY += 16;
+			jh = 50;
+		};
+	}
 	return true;
 }
 
@@ -71,7 +98,12 @@ bool Player::PhysUpdate()
 	{
 		pos.x += Forces[i].direction.x;
 		pos.y -= Forces[i].direction.y;
-	}
+		vY += Forces[i].direction.y / 2;
+	};
+	if (vY < 0)
+	{
+		vY = 0;
+	};
 	return true;
 }
 
@@ -111,7 +143,7 @@ bool Player::AnimUpdate(std::vector<SDL_Rect> p_array)
 		{
 			frame--;
 		};
-		ent.setCurFrame(p_array[frame]);
+		setCurFrame(p_array[frame]);
 		//std::cout << frame << std::endl;
 	}
 	return true;
@@ -133,7 +165,11 @@ void Player::move(float xIn, float yIn, float speed)
 	};
 	if (yIn == -1.0f)
 	{
-		setY(getY() + speed * yIn);
+		if (jh > 0)
+		{
+			setY(getY() + speed * 2 * yIn * (jh / 10));
+			jh -= speed;
+		};
 	};
 }
 

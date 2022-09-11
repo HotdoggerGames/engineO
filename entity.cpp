@@ -57,3 +57,25 @@ void entity::setCurFrame(SDL_Rect p_rect)
 {
 	curFrame = p_rect;
 }
+/*void entity::update(Player ghost, entity e)
+{
+	if (e.getX() + (48) >= ghost.getX() && e.getX() + (48) <= (ghost.getX() + (ghost.getCurFrame().w * 6)) && e.getY() + (48) >= ghost.getY() && e.getY() + (48) <= (ghost.getY() + (ghost.getCurFrame().h * 6)) && e.type == "Solid")
+	{
+		if (e.getX() < ghost.getX())
+		{
+			ghost.setX(ghost.getX() + 8);
+		};
+		if (e.getX() + (48) > ghost.getX())
+		{
+			ghost.setX(ghost.getX() - 8);
+		};
+		if (e.getY() < ghost.getY())
+		{
+			ghost.setY(ghost.getY() + 16);
+		};
+		if (e.getY() + (48) > ghost.getY())
+		{
+			ghost.setY(ghost.getY() - 16);
+		};
+	}
+}*/

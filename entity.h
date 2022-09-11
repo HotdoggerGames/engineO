@@ -19,6 +19,7 @@ class entity
 		void setTex(SDL_Texture* p_tex);
 		SDL_Rect getCurFrame();
 		void setCurFrame(SDL_Rect p_rect);
+		//void update(Player ghost, entity e);
 		std::string type;
 	private:
 		Vector2 pos;

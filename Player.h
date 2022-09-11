@@ -1,11 +1,13 @@
 #pragma once
-#include "entity.h"
-#include "RenWin.h"
 #include "Physics_Force.h"
 #include "Math.h"
+#include "Entity.h"
 
 #include <vector>
 #include <string>
+#include <SDL.h>
+#include <SDL_image.h>
+#include <iostream>
 
 class Player
 {
@@ -19,14 +21,15 @@ class Player
 		SDL_Texture* getTex();
 		void setTex(SDL_Texture* p_tex);
 		SDL_Rect getCurFrame();
-		bool update();
+		void setCurFrame(SDL_Rect p_frame);
+		bool update(entity e);
 		bool AnimUpdate(std::vector<SDL_Rect> p_array);
 		bool PhysUpdate();
 		void move(float xIn, float yIn, float speed);
 		void AddForce(float p_x, float p_y, std::string p_name);
 		void RemoveForce(std::string p_name);
 		std::vector<Physics_Force> Forces;
-		entity ent;
+		int vY;
 	private:
 		Vector2 pos;
 		SDL_Rect curFrame;
@@ -34,6 +37,7 @@ class Player
 		bool c = false;
 		int b = 0;
 		int max;
+		int jh = 50;
 		SDL_Texture* tex;
 		int frame;
 

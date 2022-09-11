@@ -16,6 +16,7 @@ public:
 	void clear();
 	void render(entity& p_entity);
 	void render(entity& p_entity, float p_w, float p_h);
+	void render(Player& p_entity, float p_w, float p_h);
 	void display();
 	SDL_Renderer* renderer;
 private:
